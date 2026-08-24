@@ -3,114 +3,213 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Тайная анкета Егора 🌱</title>
+<title>Для Егора — анкета Таси</title>
 <style>
-*{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:#7aa35a;color:#33291e;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow-x:hidden}
-body:before{content:"";position:fixed;inset:0;background:
-radial-gradient(circle at 10% 20%,#a8c978 0 3px,transparent 4px),
-radial-gradient(circle at 80% 70%,#a8c978 0 3px,transparent 4px),
-linear-gradient(#8eb76b 0 2px,transparent 2px);background-size:80px 80px,120px 120px,100% 16px;opacity:.35;pointer-events:none}
-.card{width:min(760px,94vw);background:#fff8e8;border:5px solid #5b432e;border-radius:18px;box-shadow:0 12px 0 #4a3726,0 20px 40px #31502455;padding:28px;position:relative}
-.pixel{font-family:monospace;letter-spacing:.5px}.top{display:flex;gap:20px;align-items:center}.hero{width:105px;height:125px;border:4px solid #5b432e;border-radius:12px;background:#f3c79d;position:relative;flex:none;overflow:hidden}
-.hero:before{content:"";position:absolute;width:105px;height:65px;left:-5px;top:-8px;background:#70442d;border-radius:48% 52% 45% 45%;box-shadow:12px 8px 0 #70442d,-12px 12px 0 #70442d}
-.hero:after{content:"♡";position:absolute;right:11px;top:50px;font-size:26px;color:#d75c63}
-.face{position:absolute;left:27px;top:52px;width:50px;height:48px;background:#f3c79d;border-radius:45%}.eye{position:absolute;top:19px;width:5px;height:7px;background:#3c2c25;border-radius:50%}.eye.l{left:12px}.eye.r{right:12px}.mouth{position:absolute;left:20px;top:31px;width:12px;height:6px;border-bottom:3px solid #3c2c25;border-radius:50%}
-h1{margin:0;font-size:30px}.sub{opacity:.75;margin-top:6px}.progress{height:13px;background:#dbc8a4;border:3px solid #5b432e;border-radius:20px;margin:25px 0 8px;overflow:hidden}.bar{height:100%;background:#79a84e;width:0;transition:.35s}.counter{text-align:right;font-size:13px;opacity:.65}
-.question{font-size:26px;font-weight:800;margin:18px 0}.hint{font-size:14px;opacity:.65;margin-bottom:16px}.answers{display:grid;gap:10px}.answer{border:3px solid #6b4e34;background:#f5e3bd;padding:14px 16px;border-radius:12px;font-size:17px;text-align:left;cursor:pointer;transition:.15s;box-shadow:0 4px 0 #c7a978}.answer:hover{transform:translateY(-2px);background:#ffe9a9}.answer:active{transform:translateY(2px);box-shadow:0 1px 0 #c7a978}.answer.any{position:relative}.answer.shake{animation:shake .3s}.toast{min-height:30px;margin-top:14px;font-weight:700;color:#a44b45}@keyframes shake{25%{transform:translateX(-7px) rotate(-2deg)}50%{transform:translateX(7px) rotate(2deg)}75%{transform:translateX(-4px)}}
-.start,.finish{margin-top:20px;border:3px solid #5b432e;background:#79a84e;color:white;font-size:19px;font-weight:800;padding:14px 22px;border-radius:12px;cursor:pointer;box-shadow:0 5px 0 #4f7435}.start:hover,.finish:hover{filter:brightness(1.07);transform:translateY(-1px)}
-.hidden{display:none}.small{font-size:13px;opacity:.65}.heart{font-size:42px;text-align:center}.result{text-align:center}.note{background:#f4e5c5;border:2px dashed #8d6c45;border-radius:12px;padding:14px;margin-top:15px}
-@media(max-width:600px){.card{padding:18px}.hero{width:80px;height:100px}.question{font-size:22px}h1{font-size:24px}}
+*{box-sizing:border-box}
+:root{
+  --bg:#e8dfc9;--paper:#fffaf0;--paper2:#f5eddc;--ink:#3b342b;
+  --muted:#857a6c;--green:#66885b;--green2:#4e7048;--line:#d8ccb5;
+  --brown:#765c45;--shadow:0 14px 35px rgba(67,52,35,.14)
+}
+body{
+  margin:0;min-height:100vh;color:var(--ink);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  background:
+    radial-gradient(circle at 15% 10%,rgba(255,255,255,.55),transparent 28%),
+    radial-gradient(circle at 85% 90%,rgba(105,132,85,.12),transparent 28%),
+    var(--bg);
+}
+button,input{font:inherit}
+.page{width:min(1050px,94vw);margin:34px auto 50px}
+.shell{display:grid;grid-template-columns:310px 1fr;background:var(--paper);border:1px solid #d2c5ad;border-radius:24px;box-shadow:var(--shadow);overflow:hidden;min-height:650px}
+.side{background:#eef1df;padding:28px 24px;border-right:1px solid #d9ddc9;display:flex;flex-direction:column}
+.brand{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:var(--green2);font-weight:800}
+.side h2{font-family:Georgia,serif;font-size:30px;line-height:1.08;margin:12px 0 6px}
+.side p{color:var(--muted);font-size:14px;line-height:1.55;margin:0}
+.avatar-wrap{margin:28px auto 22px;width:190px;height:250px;position:relative}
+.avatar-bg{position:absolute;inset:0;border-radius:95px 95px 30px 30px;background:#dbe3c7;border:1px solid #c4cfac}
+.avatar{position:absolute;left:35px;top:22px;width:120px;height:210px}
+.hair{position:absolute;left:8px;top:3px;width:104px;height:112px;background:#6b4934;border-radius:45% 45% 40% 40%;z-index:2}
+.curl{position:absolute;width:30px;height:30px;border-radius:50%;background:#6b4934}
+.c1{left:-8px;top:22px}.c2{left:2px;top:3px}.c3{left:30px;top:-7px}.c4{left:57px;top:-4px}.c5{left:82px;top:10px}
+.c6{left:86px;top:38px}.c7{left:-9px;top:50px}.c8{left:6px;top:76px}.c9{left:77px;top:70px}
+.face{position:absolute;z-index:3;left:29px;top:30px;width:64px;height:78px;background:#f0c39b;border-radius:43% 43% 48% 48%}
+.ear{position:absolute;top:34px;width:15px;height:24px;background:#efbf96;border-radius:50%}
+.el{left:-9px}.er{right:-9px}
+.eye{position:absolute;top:31px;width:5px;height:7px;background:#44372d;border-radius:50%}.eye.l{left:17px}.eye.r{right:17px}
+.blush{position:absolute;top:47px;width:12px;height:6px;border-radius:50%;background:#e7a89b55}.bl{left:7px}.br{right:7px}
+.mouth{position:absolute;left:27px;top:51px;width:10px;height:6px;border-bottom:2px solid #594239;border-radius:50%}
+.neck{position:absolute;left:49px;top:100px;width:22px;height:25px;background:#edbd93;z-index:1}
+.body{position:absolute;left:18px;top:117px;width:84px;height:83px;background:#6e875d;border-radius:25px 25px 12px 12px}
+.shirt{position:absolute;left:31px;top:122px;width:58px;height:54px;background:#f4eee1;z-index:1;clip-path:polygon(18% 0,82% 0,100% 100%,0 100%)}
+.overall{position:absolute;left:36px;top:120px;width:48px;height:80px;border:6px solid #708b62;border-top:0;z-index:2}
+.curlfront{position:absolute;z-index:4;left:4px;top:18px;width:34px;height:45px;border-radius:50%;border-left:12px solid #6b4934;border-bottom:10px solid #6b4934;transform:rotate(18deg)}
+.pin{position:absolute;right:20px;bottom:36px;background:#fff8e8;border:1px solid #d8cbb4;border-radius:10px;padding:7px 10px;font-size:12px;color:var(--green2);transform:rotate(-3deg)}
+.side-note{margin-top:auto;padding-top:20px;border-top:1px dashed #c7ceb5;color:#6d7561;font-size:12px;line-height:1.5}
+.main{padding:42px 46px;display:flex;flex-direction:column}
+.hidden{display:none!important}
+.topline{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.kicker{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--green2);font-weight:800}
+.counter{font-size:13px;color:var(--muted)}
+.progress{height:7px;background:#e7dfcf;border-radius:20px;margin:13px 0 34px;overflow:hidden}
+.bar{height:100%;width:0;background:var(--green);border-radius:20px;transition:width .35s ease}
+.intro h1,.question{font-family:Georgia,serif}
+.intro h1{font-size:45px;line-height:1.08;margin:0 0 15px;max-width:650px}
+.lead{font-size:17px;line-height:1.65;color:#655d52;max-width:620px}
+.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:30px 0}
+.rule{background:var(--paper2);border:1px solid var(--line);border-radius:14px;padding:14px}
+.rule b{display:block;font-size:13px;margin-bottom:4px}.rule span{font-size:12px;color:var(--muted)}
+.primary{border:0;background:var(--green);color:#fff;padding:14px 22px;border-radius:12px;font-weight:800;cursor:pointer;box-shadow:0 5px 0 var(--green2);transition:.15s}
+.primary:hover{transform:translateY(-1px)}
+.primary:active{transform:translateY(3px);box-shadow:0 2px 0 var(--green2)}
+.question{font-size:35px;line-height:1.18;margin:0 0 10px;max-width:720px}
+.question-sub{color:var(--muted);font-size:14px;margin-bottom:22px}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.answer{
+  border:1px solid #d4c7b0;background:#fffdf7;color:var(--ink);padding:15px 16px;
+  border-radius:13px;text-align:left;cursor:pointer;min-height:56px;
+  transition:.15s;box-shadow:0 2px 0 #e5dccb
+}
+.answer:hover{border-color:#9eb094;background:#f6f8ed;transform:translateY(-1px)}
+.answer.selected{border:2px solid var(--green);background:#edf4e5;padding:14px 15px}
+.custom{grid-column:1/-1;border:1px dashed #b9aa91;background:#faf6ec;color:#655d52}
+.custom-row{display:flex;gap:10px;margin-top:12px}
+.custom-input{flex:1;border:1px solid #d4c7b0;background:white;border-radius:11px;padding:13px 14px;outline:none}
+.custom-input:focus{border-color:#91a886;box-shadow:0 0 0 3px #91a88622}
+.save-custom{border:0;background:#765c45;color:white;border-radius:11px;padding:0 17px;cursor:pointer;font-weight:700}
+.micro{height:28px;margin-top:18px;color:var(--green2);font-size:13px;font-weight:700;opacity:0;transition:.2s}
+.micro.show{opacity:1}
+.finish{margin:auto 0;text-align:center;padding:35px 10px}
+.finish-icon{font-size:38px;margin-bottom:10px}
+.finish h1{font-family:Georgia,serif;font-size:40px;margin:0 0 10px}
+.finish p{color:var(--muted);line-height:1.6}
+.status{display:inline-block;margin-top:12px;padding:9px 13px;border-radius:10px;background:#eef4e8;color:#55714d;font-size:13px}
+@media(max-width:800px){
+ .shell{grid-template-columns:1fr}.side{display:none}.main{padding:30px 22px}.intro h1{font-size:37px}
+ .answers{grid-template-columns:1fr}.rules{grid-template-columns:1fr}.question{font-size:30px}
+}
 </style>
 </head>
 <body>
-<main class="card">
-<section id="intro">
-  <div class="top">
-    <div class="hero"><div class="face"><i class="eye l"></i><i class="eye r"></i><i class="mouth"></i></div></div>
-    <div><h1>Тайная анкета Егора 🌱</h1><div class="sub">Эксперимент Таси. Научная ценность: сомнительная. Романтическая: высокая.</div></div>
+<div class="page">
+<div class="shell">
+<aside class="side">
+  <div class="brand">маленькая анкета</div>
+  <h2>Для Егора</h2>
+  <p>Несколько простых вопросов, чтобы Тася лучше знала, что тебе нравится.</p>
+  <div class="avatar-wrap">
+    <div class="avatar-bg"></div>
+    <div class="avatar">
+      <div class="hair"><i class="curl c1"></i><i class="curl c2"></i><i class="curl c3"></i><i class="curl c4"></i><i class="curl c5"></i><i class="curl c6"></i><i class="curl c7"></i><i class="curl c8"></i><i class="curl c9"></i></div>
+      <div class="face"><i class="ear el"></i><i class="ear er"></i><i class="eye l"></i><i class="eye r"></i><i class="blush bl"></i><i class="blush br"></i><i class="mouth"></i></div>
+      <div class="curlfront"></div><div class="neck"></div><div class="body"></div><div class="shirt"></div><div class="overall"></div>
+    </div>
+    <div class="pin">Тася ✦</div>
   </div>
-  <div class="note">⚠️ Ответы будут сохранены. Поэтому выбирай честно. Тася всё равно узнает. 👀</div>
-  <button class="start" id="start">Начать расследование →</button>
+  <div class="side-note">Можно выбрать готовый ответ или написать свой. Здесь нет неправильных вариантов.</div>
+</aside>
+
+<main class="main">
+<section id="intro" class="intro">
+  <div class="kicker">личное дело № 01</div>
+  <h1>Что любит Егор?</h1>
+  <p class="lead">Тася решила не гадать и спросить напрямую. Тут будут чипсы, шоколад, напитки и другие очень серьёзные вещи.</p>
+  <div class="rules">
+    <div class="rule"><b>10 вопросов</b><span>без длинных анкет</span></div>
+    <div class="rule"><b>Свой вариант</b><span>можно написать что угодно</span></div>
+    <div class="rule"><b>Ответы сохраняются</b><span>только для Таси</span></div>
+  </div>
+  <button class="primary" id="start">Начать →</button>
 </section>
 
 <section id="game" class="hidden">
+  <div class="topline"><div class="kicker">анкета Егора</div><div class="counter" id="counter"></div></div>
   <div class="progress"><div class="bar" id="bar"></div></div>
-  <div class="counter" id="counter"></div>
-  <div class="question" id="question"></div>
-  <div class="hint" id="hint"></div>
+  <h1 class="question" id="question"></h1>
+  <div class="question-sub">Выбери один вариант или напиши свой.</div>
   <div class="answers" id="answers"></div>
-  <div class="toast" id="toast"></div>
+  <div class="micro" id="micro">Записано.</div>
 </section>
 
-<section id="finish" class="hidden result">
-  <div class="heart">💚</div>
-  <h1>Расследование завершено!</h1>
-  <p id="finishText">Ответы улетели в секретный сейф Таси.</p>
-  <div class="note">Егор, спасибо за честность. За прохождение анкеты тебе начислено <b>+100 очков симпатии</b>.<br>Обжалованию не подлежит.</div>
+<section id="finish" class="hidden finish">
+  <div class="finish-icon">♡</div>
+  <h1>Готово</h1>
+  <p id="finishText">Ответы сохраняются…</p>
+  <div class="status">Тася теперь знает немного больше.</div>
 </section>
 </main>
+</div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const SUPABASE_URL = "https://ckizfvitqwsdumzuqndw.supabase.co";
-const SUPABASE_KEY = "sb_publishable_hRTW3MibWl7KMiFJCzE3Fw_sP7xhAQI";
-const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const SUPABASE_URL="https://ckizfvitqwsdumzuqndw.supabase.co";
+const SUPABASE_KEY="sb_publishable_hRTW3MibWl7KMiFJCzE3Fw_sP7xhAQI";
+const db=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
-const questions = [
- {q:"Какие чипсы ты выберешь, если Тася сказала «бери любые»?", opts:["С солью 🧂","Сметана и зелень","Сыр","Острые — чтобы потом героически страдать"], joke:"Хорошо. Очень важная информация для будущих набегов на магазин."},
- {q:"Какая шоколадка автоматически делает вечер лучше?", opts:["Молочная","С орехами","Киндер","Таящаяся в шкафу Таси (не трогать!)"], joke:"Учтено. Шоколадный отдел судьбы доволен."},
- {q:"Идеальный напиток для уютного вечера?", opts:["Кола","Чай","Кофе","Что-нибудь холодное и вкусное"], joke:"Отлично. Бармен Тася уже делает вид, что записала."},
- {q:"Выходной мечты:", opts:["Лежать дома и ничего не делать","Гулять без плана","Кино + вкусняшки","Приключение, после которого нужен ещё один выходной"], joke:"Записано. Это уже похоже на план свидания, но мы ничего не говорили."},
- {q:"Если заказать пиццу, какую берём?", opts:["Пепперони","4 сыра","Грибную","Главное — побольше сыра"], joke:"Сырный консилиум вынес решение."},
- {q:"Что приятнее получить просто так?", opts:["Шоколадку","Милую записку","Вкусняшку","Объятия"], joke:"Ой. Ответ принят. Тася где-то подозрительно улыбается."},
- {q:"Какой фильм/жанр включишь первым?", opts:["Комедия","Ужастик","Романтика","Фантастика / приключения"], joke:"Кинозал одобрительно хрустит попкорном."},
- {q:"Твой уровень любви к котикам:", opts:["«Милые»","«Я должен погладить каждого»","«Кот важнее меня»","У меня уже мысленно 17 котов"], joke:"Система обнаружила повышенный уровень мяу."},
- {q:"Если Тася говорит «у меня есть сюрприз» — ты:", opts:["Радуюсь","Начинаю подозревать заговор","Спрашиваю подсказку","Главное, чтобы это не было контрольной"], joke:"Подозрительность зарегистрирована. Тася ничего не комментирует."},
- {q:"Самое важное в идеальном вечере:", opts:["Вкусно поесть","Много смеяться","Уют и спокойствие","Чтобы рядом был любимый человек"], joke:"Последний вариант подозрительно романтичный. Но ладно. 💚"}
+const questions=[
+ {q:"Какие чипсы ты выберешь?",opts:["С солью 🧂","Сметана и зелень","Сыр","Острые"]},
+ {q:"Какая шоколадка тебе нравится больше?",opts:["Молочная","С орехами","Киндер","Тёмный шоколад"]},
+ {q:"Что будешь пить уютным вечером?",opts:["Кола","Чай","Кофе","Сок"]},
+ {q:"Как выглядит хороший выходной?",opts:["Лежать дома","Погулять","Кино и вкусная еда","Куда-нибудь съездить"]},
+ {q:"Какую пиццу выберешь?",opts:["Пепперони","4 сыра","Грибную","Ветчина и сыр"]},
+ {q:"Что приятнее получить просто так?",opts:["Шоколадку","Милую записку","Вкусняшку","Что-нибудь неожиданное"]},
+ {q:"Какой фильм включишь первым?",opts:["Комедию","Ужастик","Романтику","Фантастику"]},
+ {q:"Как ты относишься к котикам?",opts:["Нравятся","Хочу погладить каждого","Очень люблю","Мне ближе собаки"]},
+ {q:"Если тебе говорят «я приготовила сюрприз» — ты:",opts:["Радуюсь","Пытаюсь угадать","Прошу подсказку","Просто жду"]},
+ {q:"Что важнее всего в хорошем вечере?",opts:["Вкусно поесть","Много смеяться","Уют и спокойствие","Хорошая компания"]}
 ];
 
-let i=0, answers=[], sessionId=crypto.randomUUID();
+let i=0,answers=[],sessionId=crypto.randomUUID();
 
 const $=id=>document.getElementById(id);
-$("start").onclick=()=>{ $("intro").classList.add("hidden"); $("game").classList.remove("hidden"); render(); };
+$("start").onclick=()=>{$("intro").classList.add("hidden");$("game").classList.remove("hidden");render()};
 
 function render(){
- const x=questions[i]; $("question").textContent=x.q; $("hint").textContent="Подумай секундочку. Но не слишком долго — Тася смотрит 👀";
- $("counter").textContent=`Вопрос ${i+1} из ${questions.length}`; $("bar").style.width=((i/questions.length)*100)+"%"; $("toast").textContent="";
+ const x=questions[i];
+ $("question").textContent=x.q;
+ $("counter").textContent=`${i+1} / ${questions.length}`;
+ $("bar").style.width=(i/questions.length*100)+"%";
+ $("micro").classList.remove("show");
  $("answers").innerHTML="";
- x.opts.forEach((o,n)=>{
-   const b=document.createElement("button"); b.className="answer"+(o.toLowerCase().includes("люб")?" any":""); b.textContent=o;
-   b.onclick=()=>choose(n,o,b); $("answers").appendChild(b);
+ x.opts.forEach(o=>{
+   const b=document.createElement("button");
+   b.className="answer";b.textContent=o;
+   b.onclick=()=>choose(o,b);
+   $("answers").appendChild(b);
  });
+ const custom=document.createElement("div");
+ custom.className="answer custom";
+ custom.innerHTML="<b>Свой вариант</b><div class='custom-row'><input class='custom-input' placeholder='Напиши свой ответ…' maxlength='120'><button class='save-custom'>Сохранить</button></div>";
+ const input=custom.querySelector("input");
+ custom.querySelector("button").onclick=()=>{
+   const value=input.value.trim();
+   if(!value){input.focus();return}
+   choose(value,custom.querySelector("button"));
+ };
+ input.addEventListener("keydown",e=>{if(e.key==="Enter")custom.querySelector("button").click()});
+ $("answers").appendChild(custom);
 }
-function choose(n,o,b){
- // playful behavior on selected options: each question has its own reaction
- const special = [
-   "Чипсовый совет собрался и одобрил.",
-   "Шоколадный гном записал это в золотую книгу.",
-   "Напиточный магистр кивнул.",
-   "Выходной успешно сохранён в календаре.",
-   "Пицца-совет уже делит корочку.",
-   "Тася сделала вид, что не растаяла.",
-   "Попкорн одобряет ваш выбор.",
-   "Котик материализовался. Мяу.",
-   "Подозрительность +3. Но ладно.",
-   "Сердце Таси получило уведомление."
- ];
- answers.push({question:questions[i].q, answer:o});
- b.classList.add("shake"); $("toast").textContent=special[i];
- setTimeout(()=>{ i++; if(i<questions.length) render(); else finish(); },420);
+
+function choose(value,el){
+ [...document.querySelectorAll(".answer")].forEach(x=>x.classList.remove("selected"));
+ el.classList.add("selected");
+ answers.push({question:questions[i].q,answer:value});
+ $("micro").textContent=i===questions.length-1?"Готово.":"Записано.";
+ $("micro").classList.add("show");
+ setTimeout(()=>{i++;if(i<questions.length)render();else finish()},280);
 }
+
 async function finish(){
- $("game").classList.add("hidden"); $("finish").classList.remove("hidden"); $("bar").style.width="100%";
- $("finishText").textContent="Сохраняем ответы в секретный сейф Таси…";
+ $("game").classList.add("hidden");$("finish").classList.remove("hidden");$("bar").style.width="100%";
+ $("finishText").textContent="Сохраняем ответы…";
  const payload={session_id:sessionId,name:"Егор",answers:answers,score:100};
  const {error}=await db.from("quiz_results").insert(payload);
  if(error){
    console.error(error);
-   $("finishText").textContent="Ой. Сейф капризничает 😭 Но ничего страшного — попробуй открыть игру ещё раз и пройти её заново.";
- } else {
-   $("finishText").textContent="Готово! Ответы улетели в секретный сейф Таси. 💌";
+   $("finishText").textContent="Не получилось сохранить ответы. Проверь интернет и попробуй пройти анкету ещё раз.";
+ }else{
+   $("finishText").textContent="Готово — ответы сохранены. Можно закрывать анкету.";
  }
 }
 </script>
