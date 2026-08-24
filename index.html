@@ -27,25 +27,78 @@ button,input{font:inherit}
 .side h2{font-family:Georgia,serif;font-size:30px;line-height:1.08;margin:12px 0 6px}
 .side p{color:var(--muted);font-size:14px;line-height:1.55;margin:0}
 .avatar-wrap{margin:28px auto 22px;width:190px;height:250px;position:relative}
-.avatar-bg{position:absolute;inset:0;border-radius:95px 95px 30px 30px;background:#dbe3c7;border:1px solid #c4cfac}
-.avatar{position:absolute;left:35px;top:22px;width:120px;height:210px}
-.hair{position:absolute;left:16px;top:8px;width:88px;height:102px;background:#684735;border-radius:48% 48% 42% 42%;z-index:2}
-.curl{position:absolute;width:24px;height:24px;border-radius:50%;background:#684735}
-.c1{left:-9px;top:24px}.c2{left:-4px;top:7px}.c3{left:12px;top:-6px}.c4{left:34px;top:-11px}.c5{left:56px;top:-5px}
-.c6{left:73px;top:14px}.c7{left:76px;top:39px}.c8{left:69px;top:65px}.c9{left:-7px;top:55px}
-.face{position:absolute;z-index:3;left:29px;top:31px;width:64px;height:78px;background:#f0c39b;border-radius:43% 43% 48% 48%}
-.ear{position:absolute;top:34px;width:15px;height:24px;background:#efbf96;border-radius:50%}
-.el{left:-9px}.er{right:-9px}
-.eye{position:absolute;top:31px;width:5px;height:7px;background:#44372d;border-radius:50%}.eye.l{left:17px}.eye.r{right:17px}
-.blush{position:absolute;top:47px;width:12px;height:6px;border-radius:50%;background:#e7a89b55}.bl{left:7px}.br{right:7px}
-.mouth{position:absolute;left:27px;top:51px;width:10px;height:6px;border-bottom:2px solid #594239;border-radius:50%}
-.neck{position:absolute;left:49px;top:100px;width:22px;height:25px;background:#edbd93;z-index:1}
-.body{position:absolute;left:18px;top:117px;width:84px;height:83px;background:#6e875d;border-radius:25px 25px 12px 12px}
-.shirt{position:absolute;left:31px;top:122px;width:58px;height:54px;background:#f4eee1;z-index:1;clip-path:polygon(18% 0,82% 0,100% 100%,0 100%)}
-.overall{position:absolute;left:36px;top:120px;width:48px;height:80px;border:6px solid #708b62;border-top:0;z-index:2}
-.curlfront{position:absolute;z-index:4;left:10px;top:20px;width:25px;height:39px;border-radius:48%;border-left:8px solid #684735;border-bottom:7px solid #684735;transform:rotate(17deg);box-sizing:border-box}
-.curlfront::after{content:"";position:absolute;right:-69px;top:6px;width:24px;height:38px;border-radius:48%;border-right:8px solid #684735;border-bottom:7px solid #684735;transform:rotate(-20deg)}
-.pin{position:absolute;right:20px;bottom:36px;background:#fff8e8;border:1px solid #d8cbb4;border-radius:10px;padding:7px 10px;font-size:12px;color:var(--green2);transform:rotate(-3deg)}
+.avatar-bg{
+  position:absolute;inset:0;border-radius:28px;
+  background:#dce6c8;border:1px solid #c5d0ae;
+  box-shadow:inset 0 -12px 0 #d4dfbd;
+}
+.pixel-avatar{
+  position:absolute;left:28px;top:24px;width:134px;height:202px;
+  image-rendering:pixelated;
+  filter:drop-shadow(0 5px 0 rgba(63,57,45,.08));
+}
+.pixel-avatar *{position:absolute;box-sizing:border-box}
+.px-hair{
+  left:19px;top:5px;width:96px;height:99px;
+  background:#5a3d2d;
+  border-radius:22px 26px 18px 24px;
+  box-shadow:
+    -8px 10px 0 #5a3d2d,
+    -13px 27px 0 #5a3d2d,
+    -8px 50px 0 #5a3d2d,
+    7px -8px 0 #5a3d2d,
+    30px -11px 0 #5a3d2d,
+    55px -7px 0 #5a3d2d,
+    78px 4px 0 #5a3d2d,
+    92px 22px 0 #5a3d2d,
+    92px 48px 0 #5a3d2d,
+    76px 72px 0 #5a3d2d,
+    2px 76px 0 #5a3d2d;
+}
+.px-hair::before{
+  content:"";left:8px;top:7px;width:78px;height:18px;
+  background:#6d4a34;transform:skewX(-8deg);
+}
+.px-face{
+  left:31px;top:29px;width:64px;height:73px;background:#efbf96;
+  border-radius:18px 18px 14px 14px;
+}
+.px-ear{top:35px;width:10px;height:18px;background:#e8b68d}
+.px-ear.left{left:-7px}.px-ear.right{right:-7px}
+.px-eye{top:31px;width:5px;height:6px;background:#3d3029}
+.px-eye.left{left:17px}.px-eye.right{right:17px}
+.px-brow{top:26px;width:10px;height:3px;background:#6a4938}
+.px-brow.left{left:14px;transform:rotate(-6deg)}.px-brow.right{right:14px;transform:rotate(6deg)}
+.px-mouth{left:28px;top:53px;width:9px;height:5px;border-bottom:2px solid #70483b;border-radius:0 0 8px 8px}
+.px-neck{left:52px;top:98px;width:22px;height:24px;background:#e9b88f}
+.px-body{
+  left:20px;top:116px;width:92px;height:78px;
+  background:#6c875d;border-radius:18px 18px 10px 10px;
+}
+.px-shirt{
+  left:39px;top:120px;width:54px;height:55px;
+  background:#f4eee1;
+}
+.px-strap{
+  top:117px;width:9px;height:73px;background:#58724f;
+}
+.px-strap.left{left:34px}.px-strap.right{left:88px}
+.px-pocket{
+  left:53px;top:147px;width:27px;height:20px;
+  border:3px solid #d9d0bd;border-top:0;
+}
+.px-hair-lock{
+  left:28px;top:26px;width:15px;height:49px;background:#5a3d2d;
+  transform:rotate(12deg);z-index:5;
+}
+.px-hair-lock.two{
+  left:84px;top:16px;width:13px;height:55px;transform:rotate(-14deg);
+}
+.px-pin{
+  right:16px;bottom:33px;background:#fff8e8;border:1px solid #d8cbb4;
+  border-radius:9px;padding:7px 10px;font-size:12px;color:#58724f;
+  transform:rotate(-3deg);z-index:8;
+}
 .side-note{margin-top:auto;padding-top:20px;border-top:1px dashed #c7ceb5;color:#6d7561;font-size:12px;line-height:1.5}
 .main{padding:42px 46px;display:flex;flex-direction:column}
 .hidden{display:none!important}
@@ -100,14 +153,25 @@ button,input{font:inherit}
   <p>Несколько простых вопросов, чтобы Тася лучше знала, что тебе нравится.</p>
   <div class="avatar-wrap">
     <div class="avatar-bg"></div>
-    <div class="avatar">
-      <div class="hair"><i class="curl c1"></i><i class="curl c2"></i><i class="curl c3"></i><i class="curl c4"></i><i class="curl c5"></i><i class="curl c6"></i><i class="curl c7"></i><i class="curl c8"></i><i class="curl c9"></i></div>
-      <div class="face"><i class="ear el"></i><i class="ear er"></i><i class="eye l"></i><i class="eye r"></i><i class="blush bl"></i><i class="blush br"></i><i class="mouth"></i></div>
-      <div class="curlfront"></div><div class="neck"></div><div class="body"></div><div class="shirt"></div><div class="overall"></div>
+    <div class="pixel-avatar" aria-label="Пиксельная аватарка Таси">
+      <div class="px-hair"></div>
+      <div class="px-hair-lock"></div>
+      <div class="px-hair-lock two"></div>
+      <div class="px-face">
+        <i class="px-ear left"></i><i class="px-ear right"></i>
+        <i class="px-brow left"></i><i class="px-brow right"></i>
+        <i class="px-eye left"></i><i class="px-eye right"></i>
+        <i class="px-mouth"></i>
+      </div>
+      <div class="px-neck"></div>
+      <div class="px-body"></div>
+      <div class="px-shirt"></div>
+      <div class="px-strap left"></div><div class="px-strap right"></div>
+      <div class="px-pocket"></div>
     </div>
-    <div class="pin">Тася ✦</div>
+    <div class="px-pin">Тася ✦</div>
   </div>
-  <div class="side-note">Можно выбрать готовый ответ или написать свой. Здесь нет неправильных вариантов.</div>
+  <div class="side-note">Можно выбрать готовый ответ или написать свой. Здесь нет неправильных вариантов.</div>Можно выбрать готовый ответ или написать свой. Здесь нет неправильных вариантов.</div>
 </aside>
 
 <main class="main">
@@ -204,11 +268,11 @@ function choose(value,el){
 async function finish(){
  $("game").classList.add("hidden");$("finish").classList.remove("hidden");$("bar").style.width="100%";
  $("finishText").textContent="Сохраняем ответы…";
- const payload={session_id:sessionId,name:"Егор",answers:answers,score:100,created_at:new Date().toISOString()};
+ const payload={session_id:sessionId,name:"Егор",answers:answers,score:100};
  const {error}=await db.from("quiz_results").insert(payload);
  if(error){
    console.error(error);
-   $("finishText").textContent="Не получилось сохранить ответы. Если это повторится, Тася покажет код ошибки.";
+   $("finishText").textContent="Не получилось сохранить ответы. Проверь интернет и попробуй пройти анкету ещё раз.";
  }else{
    $("finishText").textContent="Готово — ответы сохранены. Можно закрывать анкету.";
  }
