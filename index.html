@@ -203,11 +203,11 @@ function choose(value,el){
 async function finish(){
  $("game").classList.add("hidden");$("finish").classList.remove("hidden");$("bar").style.width="100%";
  $("finishText").textContent="Сохраняем ответы…";
- const payload={session_id:sessionId,name:"Егор",answers:answers,score:100};
+ const payload={session_id:sessionId,name:"Егор",answers:answers,score:100,created_at:new Date().toISOString()};
  const {error}=await db.from("quiz_results").insert(payload);
  if(error){
    console.error(error);
-   $("finishText").textContent="Не получилось сохранить ответы. Проверь интернет и попробуй пройти анкету ещё раз.";
+   $("finishText").textContent="Не получилось сохранить ответы. Если это повторится, Тася покажет код ошибки.";
  }else{
    $("finishText").textContent="Готово — ответы сохранены. Можно закрывать анкету.";
  }
