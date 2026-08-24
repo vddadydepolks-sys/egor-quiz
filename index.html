@@ -1,345 +1,393 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Для Егора — анкета Таси</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Опрос предпочтений • Stardew Style</title>
 <style>
-*{box-sizing:border-box}
-:root{
-  --bg:#e9e2d2;--paper:#fffaf1;--panel:#edf1df;--ink:#302b25;
-  --muted:#786f63;--green:#63875a;--green-dark:#4c6d46;
-  --line:#ddd1bb;--soft:#f5eedf;--white:#fffdf8;
-}
-body{
-  margin:0;min-height:100vh;color:var(--ink);
-  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
-  background:
-    radial-gradient(circle at 12% 8%,rgba(255,255,255,.7),transparent 28%),
-    radial-gradient(circle at 88% 90%,rgba(103,135,86,.13),transparent 30%),
-    var(--bg);
-}
-button,input{font:inherit}
-.page{width:min(1080px,94vw);margin:30px auto 48px}
-.shell{
-  display:grid;grid-template-columns:330px 1fr;min-height:690px;
-  background:var(--paper);border:1px solid #d3c6ae;border-radius:26px;
-  overflow:hidden;box-shadow:0 18px 45px rgba(62,49,33,.14);
-}
-.side{
-  background:var(--panel);padding:30px 26px;border-right:1px solid #d9ddc8;
-  display:flex;flex-direction:column;
-}
-.brand{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--green-dark);font-weight:900}
-.side h2{font:700 31px/1.05 Georgia,serif;margin:12px 0 8px}
-.side p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
-.avatar-wrap{position:relative;width:210px;height:270px;margin:28px auto 24px}
-.avatar-bg{
-  position:absolute;inset:0;border-radius:30px;background:#dfe8cd;
-  border:1px solid #c7d2b2;box-shadow:inset 0 -13px 0 #d4dfbd;
-}
-.pixel-avatar{
-  position:absolute;left:35px;top:26px;width:140px;height:210px;
-  filter:drop-shadow(0 5px 0 rgba(63,57,45,.08));
-}
-.pixel-avatar *{position:absolute;box-sizing:border-box}
-.px-hair{
-  left:17px;top:4px;width:105px;height:105px;background:#5a3d2d;
-  border-radius:25px 30px 23px 28px;
-  box-shadow:
-    -10px 11px 0 #5a3d2d,-15px 31px 0 #5a3d2d,-10px 54px 0 #5a3d2d,
-    -3px 78px 0 #5a3d2d,10px -9px 0 #5a3d2d,34px -13px 0 #5a3d2d,
-    60px -8px 0 #5a3d2d,84px 3px 0 #5a3d2d,101px 25px 0 #5a3d2d,
-    98px 50px 0 #5a3d2d,83px 76px 0 #5a3d2d,57px 88px 0 #5a3d2d;
-}
-.px-hair::before,.px-hair::after{content:"";background:#6c4933;position:absolute}
-.px-hair::before{left:12px;top:7px;width:78px;height:17px;transform:rotate(-6deg)}
-.px-hair::after{left:30px;top:24px;width:11px;height:62px;transform:rotate(9deg)}
-.px-face{left:35px;top:31px;width:67px;height:75px;background:#efbf96;border-radius:19px 19px 15px 15px}
-.px-ear{top:39px;width:10px;height:18px;background:#e7b48b}
-.px-ear.left{left:-7px}.px-ear.right{right:-7px}
-.px-eye{top:32px;width:5px;height:6px;background:#3d3029}
-.px-eye.left{left:18px}.px-eye.right{right:18px}
-.px-brow{top:27px;width:10px;height:3px;background:#6a4938}
-.px-brow.left{left:15px;transform:rotate(-6deg)}.px-brow.right{right:15px;transform:rotate(6deg)}
-.px-mouth{left:29px;top:55px;width:10px;height:5px;border-bottom:2px solid #70483b;border-radius:0 0 8px 8px}
-.px-neck{left:57px;top:104px;width:22px;height:23px;background:#e9b88f}
-.px-body{left:20px;top:119px;width:100px;height:82px;background:#6c875d;border-radius:19px 19px 11px 11px}
-.px-shirt{left:42px;top:123px;width:57px;height:58px;background:#f4eee1}
-.px-strap{top:120px;width:9px;height:77px;background:#58724f}
-.px-strap.left{left:36px}.px-strap.right{left:93px}
-.px-pocket{left:57px;top:151px;width:29px;height:21px;border:3px solid #d9d0bd;border-top:0}
-.px-hair-lock{left:27px;top:31px;width:14px;height:53px;background:#5a3d2d;transform:rotate(11deg);z-index:5}
-.px-hair-lock.two{left:91px;top:20px;width:14px;height:58px;transform:rotate(-15deg)}
-.px-pin{
-  position:absolute;right:10px;bottom:30px;background:#fff8e8;border:1px solid #d8cbb4;
-  border-radius:10px;padding:7px 10px;font-size:12px;color:#58724f;
-  transform:rotate(-3deg);z-index:8;
-}
-.side-note{
-  margin-top:auto;padding-top:20px;border-top:1px dashed #c7ceb5;
-  color:#66705c;font-size:12px;line-height:1.55;
-}
-.main{padding:44px 48px;display:flex;flex-direction:column}
-.hidden{display:none!important}
-.topline{display:flex;align-items:center;justify-content:space-between;gap:16px}
-.kicker{font-size:11px;letter-spacing:1.7px;text-transform:uppercase;color:var(--green-dark);font-weight:900}
-.counter{font-size:13px;color:var(--muted)}
-.progress{height:7px;background:#e7dfcf;border-radius:20px;margin:13px 0 38px;overflow:hidden}
-.bar{height:100%;width:0;background:var(--green);border-radius:20px;transition:width .3s ease}
-.intro h1,.question,.finish h1{font-family:Georgia,serif}
-.intro h1{font-size:46px;line-height:1.08;margin:0 0 14px;max-width:700px}
-.lead{font-size:17px;line-height:1.65;color:#655d52;max-width:650px}
-.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:30px 0}
-.rule{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:14px}
-.rule b{display:block;font-size:13px;margin-bottom:4px}.rule span{font-size:12px;color:var(--muted)}
-.primary{
-  width:max-content;border:0;background:var(--green);color:#fff;padding:14px 22px;
-  border-radius:12px;font-weight:800;cursor:pointer;box-shadow:0 4px 0 var(--green-dark);
-}
-.primary:active{transform:translateY(2px);box-shadow:0 2px 0 var(--green-dark)}
-.question{font-size:36px;line-height:1.18;margin:0 0 9px;max-width:740px}
-.question-sub{color:var(--muted);font-size:14px;margin-bottom:22px}
-.answers{display:grid;grid-template-columns:1fr 1fr;gap:11px}
-.answer{
-  border:1px solid #d4c7b0;background:var(--white);color:var(--ink);
-  padding:15px 16px;border-radius:13px;text-align:left;cursor:pointer;min-height:56px;
-  transition:.15s;box-shadow:0 2px 0 #e5dccb;
-}
-.answer:hover{border-color:#9eb094;background:#f6f8ed;transform:translateY(-1px)}
-.answer.selected{border:2px solid var(--green);background:#edf4e5;padding:14px 15px}
-.custom{grid-column:1/-1;border:1px dashed #b9aa91;background:#faf6ec;cursor:default}
-.custom:hover{transform:none;background:#faf6ec}
-.custom-title{font-weight:800;font-size:14px}
-.custom-row{display:flex;gap:10px;margin-top:12px}
-.custom-input{
-  flex:1;min-width:0;border:1px solid #d4c7b0;background:white;border-radius:11px;
-  padding:13px 14px;outline:none;
-}
-.custom-input:focus{border-color:#91a886;box-shadow:0 0 0 3px #91a88622}
-.save-custom{border:0;background:#765c45;color:white;border-radius:11px;padding:0 17px;cursor:pointer;font-weight:700}
-.micro{height:28px;margin-top:18px;color:var(--green-dark);font-size:13px;font-weight:700;opacity:0;transition:.2s}
-.micro.show{opacity:1}
-.finish{margin:auto 0;text-align:center;padding:35px 10px}
-.finish-icon{font-size:38px;margin-bottom:10px}
-.finish h1{font-size:42px;margin:0 0 10px}
-.finish p{color:var(--muted);line-height:1.6}
-.status{display:inline-block;margin-top:12px;padding:9px 13px;border-radius:10px;background:#eef4e8;color:#55714d;font-size:13px}
-@media(max-width:800px){
- .shell{grid-template-columns:1fr}.side{display:none}.main{padding:30px 22px}
- .intro h1{font-size:37px}.answers{grid-template-columns:1fr}
- .rules{grid-template-columns:1fr}.question{font-size:30px}
-}
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+  
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    background: #8BC34A;
+    background-image: 
+      linear-gradient(#7CB342 2px, transparent 2px),
+      linear-gradient(90deg, #7CB342 2px, transparent 2px);
+    background-size: 40px 40px;
+    font-family: 'Press Start 2P', cursive;
+    color: #3E2723;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .game-window {
+    background: #FFF8E1;
+    border: 8px solid #5D4037;
+    border-radius: 4px;
+    max-width: 700px;
+    width: 100%;
+    box-shadow: 0 0 0 4px #3E2723, 8px 8px 0 #3E2723;
+    overflow: hidden;
+  }
+  
+  .header {
+    background: #5D4037;
+    color: #FFF8E1;
+    padding: 16px;
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+  
+  .content {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+  }
+  
+  .portrait {
+    width: 140px;
+    height: 140px;
+    background: #E8F5E9;
+    border: 4px solid #5D4037;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    position: relative;
+  }
+  
+  .portrait::after {
+    content: "❤";
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    font-size: 24px;
+    background: #FFF8E1;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #5D4037;
+  }
+  
+  .dialogue {
+    flex: 1;
+    background: #FFFDE7;
+    border: 4px solid #5D4037;
+    padding: 16px;
+    min-height: 140px;
+    position: relative;
+  }
+  
+  .dialogue::before {
+    content: "";
+    position: absolute;
+    left: -16px;
+    top: 30px;
+    border: 8px solid transparent;
+    border-right-color: #5D4037;
+  }
+  
+  .question {
+    font-size: 12px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .option {
+    background: #E8F5E9;
+    border: 3px solid #5D4037;
+    padding: 10px 12px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.1s;
+    text-align: left;
+  }
+  
+  .option:hover {
+    background: #C8E6C9;
+    transform: translateX(4px);
+  }
+  
+  .option.selected {
+    background: #81C784;
+    border-color: #2E7D32;
+  }
+  
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: #EFEBE9;
+    border-top: 4px solid #5D4037;
+  }
+  
+  button {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 11px;
+    background: #FFB74D;
+    border: 3px solid #E65100;
+    color: #3E2723;
+    padding: 10px 16px;
+    cursor: pointer;
+  }
+  
+  button:hover { background: #FFA726; }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+  
+  .results {
+    padding: 20px;
+    font-size: 11px;
+    line-height: 1.8;
+  }
+  
+  .results h2 {
+    font-size: 14px;
+    margin-bottom: 16px;
+    color: #5D4037;
+  }
+  
+  .result-item {
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px dashed #BCAAA4;
+  }
+  
+  .copy-btn {
+    background: #81C784;
+    border-color: #2E7D32;
+    width: 100%;
+    margin-top: 16px;
+  }
+  
+  .progress {
+    height: 8px;
+    background: #D7CCC8;
+    margin: 0 20px 10px;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background: #66BB6A;
+    transition: width 0.3s;
+  }
+  
+  .start-screen, .end-screen {
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .start-screen h1 {
+    font-size: 16px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  
+  .start-screen p {
+    font-size: 11px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+  }
 </style>
 </head>
 <body>
-<div class="page">
-  <div class="shell">
-    <aside class="side">
-      <div class="brand">маленькая анкета</div>
-      <h2>Для Егора</h2>
-      <p>Несколько простых вопросов, чтобы Тася лучше знала, что тебе нравится.</p>
-
-      <div class="avatar-wrap">
-        <div class="avatar-bg"></div>
-        <div class="pixel-avatar" aria-label="Пиксельная аватарка Таси">
-          <div class="px-hair"></div>
-          <div class="px-hair-lock"></div>
-          <div class="px-hair-lock two"></div>
-          <div class="px-face">
-            <i class="px-ear left"></i><i class="px-ear right"></i>
-            <i class="px-brow left"></i><i class="px-brow right"></i>
-            <i class="px-eye left"></i><i class="px-eye right"></i>
-            <i class="px-mouth"></i>
-          </div>
-          <div class="px-neck"></div>
-          <div class="px-body"></div>
-          <div class="px-shirt"></div>
-          <div class="px-strap left"></div><div class="px-strap right"></div>
-          <div class="px-pocket"></div>
-        </div>
-        <div class="px-pin">Тася ✦</div>
-      </div>
-
-      <div class="side-note">
-        Можно выбрать готовый ответ или написать свой. Никаких правильных и неправильных ответов.
-      </div>
-    </aside>
-
-    <main class="main">
-      <section id="intro" class="intro">
-        <div class="kicker">личное дело № 01</div>
-        <h1>Что любит Егор?</h1>
-        <p class="lead">Тася решила просто спросить напрямую. Короткая анкета про еду, напитки, отдых и всякие мелочи, которые тебе нравятся.</p>
-
-        <div class="rules">
-          <div class="rule"><b>10 вопросов</b><span>коротко и без лишнего</span></div>
-          <div class="rule"><b>Свой вариант</b><span>можно написать свой ответ</span></div>
-          <div class="rule"><b>Ответы сохраняются</b><span>чтобы Тася их не потеряла</span></div>
-        </div>
-
-        <button class="primary" id="start">Начать →</button>
-      </section>
-
-      <section id="game" class="hidden">
-        <div class="topline">
-          <div class="kicker">анкета Егора</div>
-          <div class="counter" id="counter"></div>
-        </div>
-        <div class="progress"><div class="bar" id="bar"></div></div>
-        <h1 class="question" id="question"></h1>
-        <div class="question-sub">Выбери один вариант или напиши свой.</div>
-        <div class="answers" id="answers"></div>
-        <div class="micro" id="micro">Записано.</div>
-      </section>
-
-      <section id="finish" class="hidden finish">
-        <div class="finish-icon">♡</div>
-        <h1>Готово</h1>
-        <p id="finishText">Сохраняем ответы…</p>
-        <div class="status">Спасибо за ответы.</div>
-      </section>
-    </main>
+  <div class="game-window">
+    <div class="header">❤ ОПРОС ПРЕДПОЧТЕНИЙ • STARDEW STYLE ❤</div>
+    
+    <div id="app"></div>
   </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const SUPABASE_URL = "https://ckizfvitqwsdumzuqndw.supabase.co";
-const SUPABASE_KEY = "sb_publishable_hRTW3MibWl7KMiFJCzE3Fw_sP7xhAQI";
-const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
 const questions = [
-  {q:"Какие чипсы ты бы выбрал?", opts:["С солью 🧂","Сметана и зелень","Сыр","Острые"]},
-  {q:"Какой шоколад тебе больше нравится?", opts:["Молочный","С орехами","Киндер","Тёмный"]},
-  {q:"Что выберешь из напитков?", opts:["Кола","Чай","Кофе","Сок"]},
-  {q:"Какой отдых тебе ближе?", opts:["Остаться дома","Погулять","Кино или сериал","Куда-нибудь съездить"]},
-  {q:"Какую пиццу выберешь?", opts:["Пепперони","Четыре сыра","Грибную","Ветчина и сыр"]},
-  {q:"Что приятно получить без повода?", opts:["Шоколадку","Записку","Любимую вкусняшку","Небольшой подарок"]},
-  {q:"Что скорее включишь вечером?", opts:["Комедию","Ужастик","Что-нибудь спокойное","Фантастику"]},
-  {q:"К кому ты скорее подойдёшь на улице?", opts:["К коту","К собаке","К обоим","Лучше издалека"]},
-  {q:"Если тебе готовят сюрприз, ты:", opts:["Радуюсь","Пытаюсь угадать","Прошу хотя бы намёк","Просто жду"]},
-  {q:"Что делает вечер хорошим?", opts:["Вкусная еда","Разговоры и смех","Уют и спокойствие","Хорошая компания"]}
+  {
+    q: "Какой твой любимый сезон? (как в долине)",
+    options: ["🌸 Весна", "☀️ Лето", "🍂 Осень", "❄️ Зима"]
+  },
+  {
+    q: "Какая еда тебе нравится больше всего?",
+    options: ["🍕 Пицца / фастфуд", "🥩 Мясо / стейк", "🥗 Что-то полезное", "🍰 Сладкое / десерты", "🍜 Горячие блюда"]
+  },
+  {
+    q: "Как ты предпочитаешь проводить выходные?",
+    options: ["🏠 Дома в обнимочки", "🌲 На природе / прогулки", "🎮 Игры / фильмы", "🍻 С друзьями", "💤 Просто выспаться"]
+  },
+  {
+    q: "Какой цвет тебе нравится больше всего?",
+    options: ["🖤 Чёрный", "💙 Синий", "💚 Зелёный", "❤️ Красный", "🤍 Белый / бежевый", "💜 Фиолетовый"]
+  },
+  {
+    q: "Что тебе во мне нравится больше всего?",
+    options: ["💇‍♀️ Волосы (особенно кудрявые)", "👀 Глаза", "😊 Улыбка / губы", "👗 Как я одеваюсь", "💬 Характер / голос", "🤗 Всё сразу"]
+  },
+  {
+    q: "Какой способ проявления любви тебе ближе?",
+    options: ["🎁 Подарки", "💬 Слова и комплименты", "⏳ Время вместе", "🤗 Объятия и прикосновения", "🍽️ Забота (еда, помощь)"]
+  },
+  {
+    q: "Кудрявые / волнистые волосы — это...",
+    options: ["🔥 Очень горячо", "😊 Нравится", "😐 Нормально", "🤷 Без разницы"]
+  },
+  {
+    q: "Какой подарок от меня тебя бы особенно порадовал?",
+    options: ["🎮 Что-то связанное с играми", "👕 Одежда / аксессуары", "🍫 Вкусняшки", "💌 Что-то handmade / личное", "🎫 Билеты / впечатления"]
+  },
+  {
+    q: "Где бы ты хотел провести идеальное свидание?",
+    options: ["🏠 Дома с едой и фильмом", "🌳 Прогулка + кафе", "🎬 Кино / концерт", "🌅 Пикник / природа", "🍽️ Красивый ресторан"]
+  },
+  {
+    q: "Одно слово, которое лучше всего описывает твои предпочтения в отношениях:",
+    options: ["🤗 Нежность", "🔥 Страсть", "🛡️ Надёжность", "😂 Веселье", "🤝 Партнёрство"]
+  }
 ];
 
 let current = 0;
 let answers = [];
-let sessionId = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()));
-let locked = false;
 
-const $ = id => document.getElementById(id);
+const app = document.getElementById('app');
 
-$("start").addEventListener("click", () => {
-  $("intro").classList.add("hidden");
-  $("game").classList.remove("hidden");
-  renderQuestion();
-});
+function saveProgress() {
+  localStorage.setItem('stardew_quiz_answers', JSON.stringify(answers));
+  localStorage.setItem('stardew_quiz_current', current);
+}
 
-function renderQuestion() {
-  locked = false;
-  const q = questions[current];
+function loadProgress() {
+  const saved = localStorage.getItem('stardew_quiz_answers');
+  if (saved) {
+    answers = JSON.parse(saved);
+    current = parseInt(localStorage.getItem('stardew_quiz_current') || 0);
+  }
+}
 
-  $("question").textContent = q.q;
-  $("counter").textContent = `${current + 1} / ${questions.length}`;
-  $("bar").style.width = `${(current / questions.length) * 100}%`;
-  $("micro").classList.remove("show");
-  $("answers").innerHTML = "";
-
-  q.opts.forEach(option => {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "answer";
-    button.textContent = option;
-    button.addEventListener("click", () => choose(option, button));
-    $("answers").appendChild(button);
-  });
-
-  const custom = document.createElement("div");
-  custom.className = "answer custom";
-  custom.innerHTML = `
-    <div class="custom-title">Свой вариант</div>
-    <div class="custom-row">
-      <input class="custom-input" type="text" maxlength="120" placeholder="Напиши свой ответ…">
-      <button class="save-custom" type="button">Дальше</button>
+function showStart() {
+  app.innerHTML = `
+    <div class="start-screen">
+      <h1>Привет!</h1>
+      <p>Это маленький опрос в стиле Stardew Valley.<br>
+      Ответь честно на вопросы про свои предпочтения.<br>
+      В конце сможешь скопировать все ответы и отправить.</p>
+      <button onclick="startQuiz()">Начать ❤</button>
     </div>
   `;
-
-  const input = custom.querySelector(".custom-input");
-  const save = custom.querySelector(".save-custom");
-
-  save.addEventListener("click", () => {
-    const value = input.value.trim();
-    if (!value) {
-      input.focus();
-      return;
-    }
-    choose(value, save);
-  });
-
-  input.addEventListener("keydown", event => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      save.click();
-    }
-  });
-
-  $("answers").appendChild(custom);
 }
 
-function choose(value, element) {
-  if (locked) return;
-  locked = true;
-
-  document.querySelectorAll(".answer").forEach(el => el.classList.remove("selected"));
-  element.classList.add("selected");
-
-  answers.push({
-    question: questions[current].q,
-    answer: value
-  });
-
-  $("micro").textContent = current === questions.length - 1 ? "Готово." : "Записано.";
-  $("micro").classList.add("show");
-
-  setTimeout(() => {
-    current++;
-    if (current < questions.length) {
-      renderQuestion();
-    } else {
-      finish();
-    }
-  }, 260);
+function startQuiz() {
+  current = 0;
+  answers = [];
+  localStorage.removeItem('stardew_quiz_answers');
+  localStorage.removeItem('stardew_quiz_current');
+  showQuestion();
 }
 
-async function finish() {
-  $("game").classList.add("hidden");
-  $("finish").classList.remove("hidden");
-  $("bar").style.width = "100%";
-  $("finishText").textContent = "Сохраняем ответы…";
-
-  const payload = {
-    session_id: sessionId,
-    name: "Егор",
-    answers: answers,
-    score: 100
-  };
-
-  try {
-    const { error } = await db.from("quiz_results").insert(payload);
-
-    if (error) {
-      console.error(error);
-      $("finishText").textContent =
-        "Ответы собраны, но сохранить их не удалось. Проверь соединение и настройки Supabase.";
-      return;
-    }
-
-    $("finishText").textContent = "Готово — ответы сохранены. Можно закрывать анкету.";
-  } catch (err) {
-    console.error(err);
-    $("finishText").textContent =
-      "Ответы собраны, но соединение с базой не удалось.";
+function showQuestion() {
+  if (current >= questions.length) {
+    showResults();
+    return;
   }
+  
+  const q = questions[current];
+  const progress = ((current) / questions.length) * 100;
+  
+  app.innerHTML = `
+    <div class="progress"><div class="progress-bar" style="width:${progress}%"></div></div>
+    <div class="content">
+      <div class="portrait">👩‍🦱</div>
+      <div class="dialogue">
+        <div class="question">${q.q}</div>
+        <div class="options">
+          ${q.options.map((opt, i) => 
+            `<div class="option" onclick="selectOption(${i})">${opt}</div>`
+          ).join('')}
+        </div>
+      </div>
+    </div>
+    <div class="nav">
+      <button onclick="prevQuestion()" ${current === 0 ? 'disabled' : ''}>← Назад</button>
+      <span style="font-size:10px;align-self:center">${current + 1} / ${questions.length}</span>
+      <button id="nextBtn" onclick="nextQuestion()" disabled>Далее →</button>
+    </div>
+  `;
+}
+
+let selected = null;
+
+function selectOption(i) {
+  selected = i;
+  document.querySelectorAll('.option').forEach((el, idx) => {
+    el.classList.toggle('selected', idx === i);
+  });
+  document.getElementById('nextBtn').disabled = false;
+}
+
+function nextQuestion() {
+  if (selected === null) return;
+  answers[current] = {
+    question: questions[current].q,
+    answer: questions[current].options[selected]
+  };
+  selected = null;
+  current++;
+  saveProgress();
+  showQuestion();
+}
+
+function prevQuestion() {
+  if (current > 0) {
+    current--;
+    selected = null;
+    showQuestion();
+  }
+}
+
+function showResults() {
+  app.innerHTML = `
+    <div class="results">
+      <h2>❤ Результаты опроса ❤</h2>
+      ${answers.map((a, i) => `
+        <div class="result-item">
+          <strong>${i + 1}. ${a.question}</strong><br>
+          → ${a.answer}
+        </div>
+      `).join('')}
+      <button class="copy-btn" onclick="copyResults()">📋 Скопировать все ответы</button>
+      <button style="margin-top:12px;width:100%;background:#FFCC80;border-color:#EF6C00" onclick="startQuiz()">Пройти заново</button>
+    </div>
+  `;
+}
+
+function copyResults() {
+  const text = `Результаты опроса предпочтений (Stardew Style):\n\n` + 
+    answers.map((a, i) => `${i + 1}. ${a.question}\n→ ${a.answer}`).join('\n\n');
+  
+  navigator.clipboard.writeText(text).then(() => {
+    alert('Результаты скопированы! Теперь можешь вставить их в сообщение 💕');
+  }).catch(() => {
+    prompt('Скопируй текст вручную:', text);
+  });
+}
+
+// запуск
+loadProgress();
+if (answers.length === questions.length) {
+  showResults();
+} else if (answers.length > 0) {
+  showQuestion();
+} else {
+  showStart();
 }
 </script>
 </body>
