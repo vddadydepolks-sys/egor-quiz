@@ -1,0 +1,7 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Ответы Егора</title>
+<style>body{font-family:Arial,sans-serif;background:#f7ead8;color:#3b2840;margin:0;padding:25px}.box{max-width:900px;margin:auto;background:white;padding:25px;border-radius:16px;box-shadow:0 8px 30px #0002}h1{margin-top:0}.row{border:1px solid #ead2c8;border-radius:10px;padding:12px;margin:10px 0}.q{font-weight:bold}.a{margin-top:5px}.muted{opacity:.65}button{padding:10px 14px;border:0;border-radius:9px;background:#8fbd76;font-weight:bold}</style></head>
+<body><div class="box"><h1>💌 Ответы Егора</h1><p class="muted">Эта страница показывает последний результат, сохранённый в этом браузере. Для облачного режима подключи Supabase по инструкции.</p><button onclick="load()">Обновить</button><div id="out"></div></div>
+<script>
+function load(){let x=localStorage.getItem("egor_quiz_last");let o=document.getElementById("out");if(!x){o.innerHTML="<p>Пока нет ответов.</p>";return}let d=JSON.parse(x);o.innerHTML="<h2>Егор</h2><p>❤️ "+d.score+"</p>"+Object.values(d.answers).map(a=>`<div class="row"><div class="q">${a.question}</div><div class="a">${a.label}</div></div>`).join("")}
+load();
+</script></body></html>
