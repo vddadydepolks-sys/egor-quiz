@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Опрос предпочтений • Stardew Style</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+  
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    background: #8BC34A;
+    background-image: 
+      linear-gradient(#7CB342 2px, transparent 2px),
+      linear-gradient(90deg, #7CB342 2px, transparent 2px);
+    background-size: 40px 40px;
+    font-family: 'Press Start 2P', cursive;
+    color: #3E2723;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .game-window {
+    background: #FFF8E1;
+    border: 8px solid #5D4037;
+    border-radius: 4px;
+    max-width: 700px;
+    width: 100%;
+    box-shadow: 0 0 0 4px #3E2723, 8px 8px 0 #3E2723;
+    overflow: hidden;
+  }
+  
+  .header {
+    background: #5D4037;
+    color: #FFF8E1;
+    padding: 16px;
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+  
+  .content {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+  }
+  
+  .portrait {
+    width: 140px;
+    height: 140px;
+    background: #E8F5E9;
+    border: 4px solid #5D4037;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    position: relative;
+  }
+  
+  .portrait::after {
+    content: "❤";
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    font-size: 24px;
+    background: #FFF8E1;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #5D4037;
+  }
+  
+  .dialogue {
+    flex: 1;
+    background: #FFFDE7;
+    border: 4px solid #5D4037;
+    padding: 16px;
+    min-height: 140px;
+    position: relative;
+  }
+  
+  .dialogue::before {
+    content: "";
+    position: absolute;
+    left: -16px;
+    top: 30px;
+    border: 8px solid transparent;
+    border-right-color: #5D4037;
+  }
+  
+  .question {
+    font-size: 12px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+  
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .option {
+    background: #E8F5E9;
+    border: 3px solid #5D4037;
+    padding: 10px 12px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.1s;
+    text-align: left;
+  }
+  
+  .option:hover {
+    background: #C8E6C9;
+    transform: translateX(4px);
+  }
+  
+  .option.selected {
+    background: #81C784;
+    border-color: #2E7D32;
+  }
+  
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: #EFEBE9;
+    border-top: 4px solid #5D4037;
+  }
+  
+  button {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 11px;
+    background: #FFB74D;
+    border: 3px solid #E65100;
+    color: #3E2723;
+    padding: 10px 16px;
+    cursor: pointer;
+  }
+  
+  button:hover { background: #FFA726; }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+  
+  .results {
+    padding: 20px;
+    font-size: 11px;
+    line-height: 1.8;
+  }
+  
+  .results h2 {
+    font-size: 14px;
+    margin-bottom: 16px;
+    color: #5D4037;
+  }
+  
+  .result-item {
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px dashed #BCAAA4;
+  }
+  
+  .copy-btn {
+    background: #81C784;
+    border-color: #2E7D32;
+    width: 100%;
+    margin-top: 16px;
+  }
+  
+  .progress {
+    height: 8px;
+    background: #D7CCC8;
+    margin: 0 20px 10px;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background: #66BB6A;
+    transition: width 0.3s;
+  }
+  
+  .start-screen, .end-screen {
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .start-screen h1 {
+    font-size: 16px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  
+  .start-screen p {
+    font-size: 11px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+  <div class="game-window">
+    <div class="header">❤ ОПРОС ПРЕДПОЧТЕНИЙ • STARDEW STYLE ❤</div>
+    
+    <div id="app"></div>
+  </div>
+
+<script>
+const questions = [
+  {
+    q: "Какой твой любимый сезон? (как в долине)",
+    options: ["🌸 Весна", "☀️ Лето", "🍂 Осень", "❄️ Зима"]
+  },
+  {
+    q: "Какая еда тебе нравится больше всего?",
+    options: ["🍕 Пицца / фастфуд", "🥩 Мясо / стейк", "🥗 Что-то полезное", "🍰 Сладкое / десерты", "🍜 Горячие блюда"]
+  },
+  {
+    q: "Как ты предпочитаешь проводить выходные?",
+    options: ["🏠 Дома в обнимочки", "🌲 На природе / прогулки", "🎮 Игры / фильмы", "🍻 С друзьями", "💤 Просто выспаться"]
+  },
+  {
+    q: "Какой цвет тебе нравится больше всего?",
+    options: ["🖤 Чёрный", "💙 Синий", "💚 Зелёный", "❤️ Красный", "🤍 Белый / бежевый", "💜 Фиолетовый"]
+  },
+  {
+    q: "Что тебе во мне нравится больше всего?",
+    options: ["💇‍♀️ Волосы (особенно кудрявые)", "👀 Глаза", "😊 Улыбка / губы", "👗 Как я одеваюсь", "💬 Характер / голос", "🤗 Всё сразу"]
+  },
+  {
+    q: "Какой способ проявления любви тебе ближе?",
+    options: ["🎁 Подарки", "💬 Слова и комплименты", "⏳ Время вместе", "🤗 Объятия и прикосновения", "🍽️ Забота (еда, помощь)"]
+  },
+  {
+    q: "Кудрявые / волнистые волосы — это...",
+    options: ["🔥 Очень горячо", "😊 Нравится", "😐 Нормально", "🤷 Без разницы"]
+  },
+  {
+    q: "Какой подарок от меня тебя бы особенно порадовал?",
+    options: ["🎮 Что-то связанное с играми", "👕 Одежда / аксессуары", "🍫 Вкусняшки", "💌 Что-то handmade / личное", "🎫 Билеты / впечатления"]
+  },
+  {
+    q: "Где бы ты хотел провести идеальное свидание?",
+    options: ["🏠 Дома с едой и фильмом", "🌳 Прогулка + кафе", "🎬 Кино / концерт", "🌅 Пикник / природа", "🍽️ Красивый ресторан"]
+  },
+  {
+    q: "Одно слово, которое лучше всего описывает твои предпочтения в отношениях:",
+    options: ["🤗 Нежность", "🔥 Страсть", "🛡️ Надёжность", "😂 Веселье", "🤝 Партнёрство"]
+  }
+];
+
+let current = 0;
+let answers = [];
+
+const app = document.getElementById('app');
+
+function saveProgress() {
+  localStorage.setItem('stardew_quiz_answers', JSON.stringify(answers));
+  localStorage.setItem('stardew_quiz_current', current);
+}
+
+function loadProgress() {
+  const saved = localStorage.getItem('stardew_quiz_answers');
+  if (saved) {
+    answers = JSON.parse(saved);
+    current = parseInt(localStorage.getItem('stardew_quiz_current') || 0);
+  }
+}
+
+function showStart() {
+  app.innerHTML = `
+    <div class="start-screen">
+      <h1>Привет!</h1>
+      <p>Это маленький опрос в стиле Stardew Valley.<br>
+      Ответь честно на вопросы про свои предпочтения.<br>
+      В конце сможешь скопировать все ответы и отправить.</p>
+      <button onclick="startQuiz()">Начать ❤</button>
+    </div>
+  `;
+}
+
+function startQuiz() {
+  current = 0;
+  answers = [];
+  localStorage.removeItem('stardew_quiz_answers');
+  localStorage.removeItem('stardew_quiz_current');
+  showQuestion();
+}
+
+function showQuestion() {
+  if (current >= questions.length) {
+    showResults();
+    return;
+  }
+  
+  const q = questions[current];
+  const progress = ((current) / questions.length) * 100;
+  
+  app.innerHTML = `
+    <div class="progress"><div class="progress-bar" style="width:${progress}%"></div></div>
+    <div class="content">
+      <div class="portrait">👩‍🦱</div>
+      <div class="dialogue">
+        <div class="question">${q.q}</div>
+        <div class="options">
+          ${q.options.map((opt, i) => 
+            `<div class="option" onclick="selectOption(${i})">${opt}</div>`
+          ).join('')}
+        </div>
+      </div>
+    </div>
+    <div class="nav">
+      <button onclick="prevQuestion()" ${current === 0 ? 'disabled' : ''}>← Назад</button>
+      <span style="font-size:10px;align-self:center">${current + 1} / ${questions.length}</span>
+      <button id="nextBtn" onclick="nextQuestion()" disabled>Далее →</button>
+    </div>
+  `;
+}
+
+let selected = null;
+
+function selectOption(i) {
+  selected = i;
+  document.querySelectorAll('.option').forEach((el, idx) => {
+    el.classList.toggle('selected', idx === i);
+  });
+  document.getElementById('nextBtn').disabled = false;
+}
+
+function nextQuestion() {
+  if (selected === null) return;
+  answers[current] = {
+    question: questions[current].q,
+    answer: questions[current].options[selected]
+  };
+  selected = null;
+  current++;
+  saveProgress();
+  showQuestion();
+}
+
+function prevQuestion() {
+  if (current > 0) {
+    current--;
+    selected = null;
+    showQuestion();
+  }
+}
+
+function showResults() {
+  const text = answers.map((a, i) => 
+    `${i + 1}. ${a.question}\n→ ${a.answer}`
+  ).join('\n\n');
+  
+  app.innerHTML = `
+    <div class="results">
+      <h2>❤ Результаты опроса ❤</h2>
+      ${answers.map((a, i) => `
+        <div class="result-item">
+          <strong>${i + 1}. ${a.question}</strong><br>
+          → ${a.answer}
+        </div>
+      `).join('')}
+      <button class="copy-btn" onclick="copyResults()">📋 Скопировать все ответы</button>
+      <button style="margin-top:12px;width:100%;background:#FFCC80;border-color:#EF6C00" onclick="startQuiz()">Пройти заново</button>
+    </div>
+  `;
+  
+  // сохраняем финальные ответы
+  localStorage.setItem('stardew_quiz_final', text);
+}
+
+function copyResults() {
+  const text = `Результаты опроса предпочтений (Stardew Style):\n\n` + 
+    answers.map((a, i) => `${i + 1}. ${a.question}\n→ ${a.answer}`).join('\n\n');
+  
+  navigator.clipboard.writeText(text).then(() => {
+    alert('Результаты скопированы! Теперь можешь вставить их в сообщение 💕');
+  }).catch(() => {
+    // fallback
+    prompt('Скопируй текст вручную:', text);
+  });
+}
+
+// запуск
+loadProgress();
+if (answers.length === questions.length) {
+  showResults();
+} else if (answers.length > 0) {
+  showQuestion();
+} else {
+  showStart();
+}
+</script>
+</body>
+</html>
